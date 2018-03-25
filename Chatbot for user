@@ -1,0 +1,30 @@
+Backend setup:APi call using node.js
+Front end:Angular.js/jquery
+NLP approach:NLTK library
+
+NLP approach for chatbot:
+Description:
+We will be using NLTK library for NLP .
+Using POS tagging first we will come to know about parts of speech used in the sentences
+After POS tagging we will remove stop words form our sentences,to get he clear picture.
+We will be targeting noun and verb to understand whether that is question or statement.
+After removing stop words the sentence with left words,will undergo probability test with the corpus we have.
+If the probability is high we will give the answer 
+Else the chatbot with promt user that did you mean this
+if NO ,then further analysis has to happen.
+
+
+How chatbot will  interact with user
+It will start with greeting
+It will tell his name and ask about users name
+Sometimes user can start with emoticon,chabot should understand that
+If user doesnot responds within some time ,pop up message will come.
+If the same question is repetaed again ,it can ask user not to repeat question or tell diff answer everytime
+
+
+For making corpus
+Chatbot should have ability to scrap website using(Beautiful soap)and keep all the questions and answers.
+
+
+
+

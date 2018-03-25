@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DiabeticPatientTest</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+ 
+<div class="container" style="margin-top:40px;">
+  <h2>Find if you are diabetic with machine learning model.</h2>
+
+  <!--start of svm-->
+  <div class="panel panel-success">
+    <div class="panel-heading"><h4>Using SVM</h4></div>
+    <div class="panel-body">
+  <form class="form-inline">
+  <div class="form-group" style="margin-left:40px;">
+    <label for="bmi">BMI:</label>
+    <input type="text" class="form-control" id="bmi_svm">
+  </div>
+  <div class="form-group" style="margin-left:40px;">
+    <label for="insulin">Insulin:</label>
+    <input type="text" class="form-control" id="insulin_svm">
+  </div>
+  <button type="button" class="btn btn-danger" id="submit_svm" style="margin-left:40px;">Submit</button>
+
+  <div class="form-group" style="margin-left:40px;">
+  <span id="result_svm"></span>
+  </div>
+</form>
+
+    </div>
+  </div>
+<!--end of svm-->
+
+<!--start of knn-->
+
+ <div class="panel panel-info">
+    <div class="panel-heading"><h4>Using KNN</h4></div>
+    <div class="panel-body">
+  <form class="form-inline">
+  <div class="form-group" style="margin-left:40px;">
+    <label for="bmi">BMI:</label>
+    <input type="text" class="form-control" id="bmi_knn">
+  </div>
+  <div class="form-group" style="margin-left:40px;">
+    <label for="insulin">Insulin:</label>
+    <input type="text" class="form-control" id="insulin_knn">
+  </div>
+  <button type="button" class="btn btn-danger" id="submit_knn" style="margin-left:40px;">Submit</button>
+
+  <div class="form-group" style="margin-left:40px;">
+  <span id="result_knn"></span>
+  </div>
+</form>
+
+    </div>
+  </div>
+<!--end of knn-->
+
+
+<!--start of Naive Bayes-->
+ <div class="panel panel-danger">
+    <div class="panel-heading"><h4>Using Naive Bayes</h4></div>
+    <div class="panel-body">
+  <form class="form-inline">
+  <div class="form-group" style="margin-left:40px;">
+    <label for="bmi">BMI:</label>
+    <input type="text" class="form-control" id="bmi_nb">
+  </div>
+  <div class="form-group" style="margin-left:40px;">
+    <label for="insulin">Insulin:</label>
+    <input type="text" class="form-control" id="insulin_nb">
+  </div>
+  <button type="button" class="btn btn-danger" id="submit_nb" style="margin-left:40px;">Submit</button>
+<div class="form-group" style="margin-left:40px;">
+  <span id="result_nb"></span>
+  </div>
+</form>
+
+    </div>
+  </div>
+
+<!--end of Naive Bayes-->
+</div>
+
+</body>
+<script>
+
+$(document).ready(function(){
+    
+$('#submit_nb').click(function(){
+  bmi_nbb=parseInt($('#bmi_nb').val());
+  insulin_nbb=parseInt($('#insulin_nb').val());
+  alert(" NB url http://192.168.0.3:5004/NaiveBayes/"+bmi_nbb+"/"+insulin_nbb);
+      $.get("http://192.168.0.3:5004/NaiveBayes/"+bmi_nbb+"/"+insulin_nbb, function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+        $('#result_nb').html(data);
+    });
+  });  
+
+//for knn
+$('#submit_knn').click(function(){
+  bmi_knn_var=parseInt($('#bmi_knn').val());
+  insulin_knn_var=parseInt($('#insulin_knn').val());
+  alert("knn url http://192.168.0.3:5004/KNN/"+bmi_knn_var+"/"+insulin_knn_var);
+      $.get("http://192.168.0.3:5004/KNN/"+bmi_knn_var+"/"+insulin_knn_var, function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+        $('#result_knn').html(data);
+    });
+  });  
+
+//for svm
+$('#submit_svm').click(function(){
+  bmi_svm_var=parseInt($('#bmi_svm').val());
+  insulin_svm_var=parseInt($('#insulin_svm').val());
+  alert("SVM url http://192.168.0.3:5004/SVM/"+bmi_svm_var+"/"+insulin_svm_var);
+      $.get("http://192.168.0.3:5004/SVM/"+bmi_svm_var+"/"+insulin_svm_var, function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+        $('#result_svm').html(data);
+    });
+  });
+
+
+
+});
+
+</script>
+</html>
